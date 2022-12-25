@@ -6,6 +6,19 @@
         <h1>
             testing
         </h1>
+
+        <form action="/account/hello_world/" method="post">
+            <!--장고에서 post요청을 할때는 crsf토큰(장고에서 제공하는 보안)을 명시해주어야 한다.-->
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="POST">
+
+            <h1>
+                {{ text }}
+            </h1>
+
+
+        </form>
+
     </div>
 
 {% endblock %}
