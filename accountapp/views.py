@@ -1,6 +1,9 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView
 
 from accountapp.models import HelloWorld
 
@@ -23,3 +26,10 @@ def hello_world(request):
     else:
         hello_world_list = HelloWorld.objects.all()
         return render(request,'accountapp/hello_world.html', context={'hello_world_list': hello_world_list}) #context는 데이터 꾸러미
+
+
+class AccountCreateView(CreateView):
+    model = User  # User는 장고에서 기본제공해주는 모델
+    form_class = UserCreationForm # 패스워드 검증 폼 내장 클래스
+    success_url = reverse_lazy('accountapp:hello_world')  #함수와 클래스의 불러오는 방식의 차이, rever_lazy는 클래스형에서 사용함
+    template_name = 'accountapp/create.html'
