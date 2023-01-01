@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from accountapp.models import HelloWorld
 
@@ -33,3 +33,9 @@ class AccountCreateView(CreateView):
     form_class = UserCreationForm # 패스워드 검증 폼 내장 클래스
     success_url = reverse_lazy('accountapp:hello_world')  #함수와 클래스의 불러오는 방식의 차이, rever_lazy는 클래스형에서 사용함
     template_name = 'accountapp/create.html'
+
+
+class AccountDetailView(DetailView):
+    model = User
+    context_object_name = 'target_user'
+    template_name = 'accountapp/detail.html'
