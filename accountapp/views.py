@@ -41,11 +41,13 @@ class AccountDetailView(DetailView):
 
 class AccountUpdateView(UpdateView):
     model = User  # User는 장고에서 기본제공해주는 모델
+    context_object_name = 'target_user'
     form_class = AccountUpdateForm # 패스워드 검증 폼 내장 클래스
     success_url = reverse_lazy('accountapp:hello_world')  #함수와 클래스의 불러오는 방식의 차이, rever_lazy는 클래스형에서 사용함
     template_name = 'accountapp/update.html'
 
 class AccountDeleteView(DeleteView):
     model = User
+    context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
