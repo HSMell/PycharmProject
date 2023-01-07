@@ -3,7 +3,7 @@ from django.http import HttpResponseForbidden
 
 
 def account_ownership_required(func):
-    def decorated(request, *args, **kwargs):
+    def decorated(request, *args, **kwargs):        #*args : tuple, **kwargs : dictinary
         user = User.objects.get(pk=kwargs['pk'])
         if not user == request.user:
             return HttpResponseForbidden()
