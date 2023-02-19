@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
@@ -20,4 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls')), #accountapp안에 있는 url로 분기처리
     path('profiles/', include('profileapp.urls')), #profileapp안에 있는 url로 분기처리
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)   # 설정을 해주어야 이미지가 보일수있게 처리가 가능하다
