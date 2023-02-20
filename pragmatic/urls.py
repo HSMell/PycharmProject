@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls')), #accountapp안에 있는 url로 분기처리
     path('profiles/', include('profileapp.urls')), #profileapp안에 있는 url로 분기처리
+    path('articles/', include('articleapp.urls')), #articleapp안에 있는 url로 분기처리
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)   # 설정을 해주어야 이미지가 보일수있게 처리가 가능하다
